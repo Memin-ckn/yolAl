@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "850626662603",
+    "project_id": "yolal-e154b",
+    "storage_bucket": "yolal-e154b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850626662603:android:c117e88b3a4c4ef9e5cb4e",
+        "android_client_info": {
+          "package_name": "com.example.yolal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABDL_48KUV0OWfkNViNYZ1_9xhbrWroyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
