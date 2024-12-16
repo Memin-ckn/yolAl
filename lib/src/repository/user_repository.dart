@@ -18,7 +18,7 @@ class UserRepository extends GetxController {
               backgroundColor: Colors.green,
               colorText: Colors.white),
         )
-        .catchError((error, StackTrace) {
+        .catchError((error, stackTrace) {
       Get.snackbar("Error", "Something went wrong.",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.redAccent,
