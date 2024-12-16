@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yol_al/src/features/authentication/screens/signup/otp_screen.dart';
 import 'package:yol_al/src/repository/authentication%20repository/authentication_repository.dart';
 import 'package:yol_al/src/repository/user_repository.dart';
 import '../models/user_model.dart';

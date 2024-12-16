@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:yol_al/src/features/authentication/dashbord/dashbord.dart';
+import 'package:yol_al/src/features/authentication/screens/WelcomeScreen/welcome_screen.dart';
 import 'package:yol_al/src/repository/authentication%20repository/exceptions/signup_email_password_failure.dart';
 
 class AuthenticationRepository extends GetxController {
