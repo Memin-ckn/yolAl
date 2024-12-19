@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:yol_al/src/repository/authentication%20repository/authentication_repository.dart';
 import 'firebase_options.dart';
 
+// Mainde su flutterbinding firebase falan kalması lazım ona dikkat edelim 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)

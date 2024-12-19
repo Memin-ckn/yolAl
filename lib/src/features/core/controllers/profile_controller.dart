@@ -9,7 +9,7 @@ class ProfileController extends GetxController {
   final _authRepo = Get.put(AuthenticationRepository());
   final _userRepo = Get.put(UserRepository());
 
-  Future<UserModel> getUserData() {
+  getUserData() {
     final email = _authRepo.firebaseUser.value?.email;
     if (email != null) {
       return _userRepo.getUserDetails(email);
@@ -19,6 +19,6 @@ class ProfileController extends GetxController {
   }
 
   Future<List<UserModel>> getAllUser() async{
-    return await _userRepo.allUser();
+    return await _userRepo.getAllUsers();
   }
 }

@@ -30,6 +30,7 @@ class SignUpController extends GetxController {
     Get.to(() => const OTPScreen());
   }
 
+  // Authentication Repository dosyasına phone Authentication methodu eklendiğinde çalısacak
   void phoneAuthentication(String phoneNo){
     AuthenticationRepository.instance.phoneAuthentication(phoneNo);
   }  
