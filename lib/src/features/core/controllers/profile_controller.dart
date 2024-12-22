@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:yol_al/src/features/authentication/models/user_model.dart';
 import 'package:yol_al/src/repository/authentication%20repository/authentication_repository.dart';
-import 'package:yol_al/src/repository/user_repository/user_repository.dart';
+import 'package:yol_al/src/repository/user_repository.dart';
 
 class ProfileController extends GetxController {
   static ProfileController get instance => Get.find();
@@ -18,7 +18,11 @@ class ProfileController extends GetxController {
     }
   }
 
+<<<<<<< Updated upstream
   Future<List<UserModel>> getAllUser() async => await _userRepo.getAllUsers();
+=======
+  Future<List<UserModel>> getAllUsers() async => await _userRepo.getAllUsers();
+>>>>>>> Stashed changes
 
   updateRecord(UserModel user) async {
     await _userRepo.updateUserRecord(user);

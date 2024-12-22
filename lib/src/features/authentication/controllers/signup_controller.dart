@@ -24,14 +24,19 @@ class SignUpController extends GetxController {
     }
   }
 
-  Future<void> createUser(UserModel user) async {
+// Phone Authentication yapildigi zaman acilacak ve calismaya baslayacak
+  /* Future<void> createUser(UserModel user) async {
     await userRepo.createUser(user);
     phoneAuthentication(user.phoneNo);
     Get.to(() => const OTPScreen());
-  }
+  } */
 
+<<<<<<< Updated upstream
   // Authentication Repository dosyasına phone Authentication methodu eklendiğinde çalısacak
   void phoneAuthentication(String phoneNo){
+=======
+  /* void phoneAuthentication(String phoneNo) {
+>>>>>>> Stashed changes
     AuthenticationRepository.instance.phoneAuthentication(phoneNo);
-  }
+  } */
 }
