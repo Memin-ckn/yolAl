@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:yol_al/src/repository/authentication%20repository/authentication_repository.dart';
 import 'firebase_options.dart';
-import 'package:yol_al/src/features/authentication/screens/forgetPassword/forget_password.dart';
+import 'package:yol_al/src/features/authentication/screens/forgetPassword/forget_password_screen.dart';
 import 'package:yol_al/src/features/authentication/screens/register/register_screen.dart';
 import 'package:yol_al/src/features/authentication/screens/login/login_page.dart';
 
