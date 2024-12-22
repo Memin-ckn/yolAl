@@ -25,13 +25,10 @@ class UserModel {
   }
 
   factory UserModel.fromSnapshot(
-      DocumentSnapshot<Map<String, dynamic>> document) {
+    DocumentSnapshot<Map<String, dynamic>> document) {
     final data = document.data()!;
     return UserModel(
-<<<<<<< Updated upstream
         id: document.id,
-=======
->>>>>>> Stashed changes
         email: data["Email"],
         password: data["Password"],
         fullName: data["FullName"],
