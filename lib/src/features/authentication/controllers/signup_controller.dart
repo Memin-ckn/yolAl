@@ -33,5 +33,5 @@ class SignUpController extends GetxController {
   // Authentication Repository dosyasına phone Authentication methodu eklendiğinde çalısacak
   void phoneAuthentication(String phoneNo){
     AuthenticationRepository.instance.phoneAuthentication(phoneNo);
-  }  
+  }
 }

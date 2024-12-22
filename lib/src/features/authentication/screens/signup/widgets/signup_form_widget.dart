@@ -13,11 +13,8 @@ Get User and Pass It to Controller
 */
 
 class SignUpFormWidget extends StatelessWidget {
-  
   //const SignUpFormWidget(key: _formKey('dfvbheridfhy'));
   final _formKey = GlobalKey<FormState>();
-
-  
 
   @override
   Widget build(BuildContext context) {
