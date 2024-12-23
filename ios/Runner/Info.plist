@@ -45,5 +45,11 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>CFBundleURLSchemes</key>
+        <array>
+            <string>yolAl</string>
+        </array>
+        <key>CFBundleURLName</key>
+        <string>com.googleusercontent.apps.850626662603-gj5uijkqng76c3ut5ugljcc8dkr4nlkp</string>
 </dict>
 </plist>

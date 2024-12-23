@@ -15,7 +15,6 @@ class SignUpController extends GetxController {
 
   final userRepo = Get.put(UserRepository());
 
-  // UI kısmından bu fonksiyonları çağırın gerisi hallolmalı
   void registerUser(String email, String password) {
     String? error = AuthenticationRepository.instance
         .createUserWithEmailAndPassword(email, password) as String?;
@@ -24,14 +23,13 @@ class SignUpController extends GetxController {
     }
   }
 
-// Phone Authentication yapildigi zaman acilacak ve calismaya baslayacak
-  /* Future<void> createUser(UserModel user) async {
+  Future<void> createUser(UserModel user) async {
     await userRepo.createUser(user);
     phoneAuthentication(user.phoneNo);
     Get.to(() => const OTPScreen());
-  } */
+  }
 
-  /* void phoneAuthentication(String phoneNo) {
+  void phoneAuthentication(String phoneNo) {
     AuthenticationRepository.instance.phoneAuthentication(phoneNo);
-  } */
+  }
 }

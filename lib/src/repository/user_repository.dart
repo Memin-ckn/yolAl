@@ -28,14 +28,16 @@ class UserRepository extends GetxController {
   }
 
   Future<UserModel> getUserDetails(String email) async {
-    final snapshot = await _db.collection("Users").where("Email", isEqualTo: email).get();
+    final snapshot =
+        await _db.collection("Users").where("Email", isEqualTo: email).get();
     final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
     return userData;
   }
 
   Future<List<UserModel>> getAllUsers() async {
     final snapshot = await _db.collection("Users").get();
-    final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
+    final userData =
+        snapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
     return userData;
   }
 
@@ -43,5 +45,20 @@ class UserRepository extends GetxController {
     await _db.collection("Users").doc(user.id).update(user.toJson());
   }
 
-
+  Future<void> deleteUser(String userId) async {
+    try {
+      await _db.collection("Users").doc(userId).delete().then((_) {
+        Get.snackbar("Success", "User deleted successfully.",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+            colorText: Colors.white);
+      });
+    } catch (error) {
+      Get.snackbar("Error", "Failed to delete the user.",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.redAccent,
+          colorText: Colors.white);
+      print(error.toString());
+    }
+  }
 }

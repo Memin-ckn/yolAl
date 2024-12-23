@@ -18,11 +18,7 @@ class ProfileController extends GetxController {
     }
   }
 
-<<<<<<< Updated upstream
-  Future<List<UserModel>> getAllUser() async => await _userRepo.getAllUsers();
-=======
   Future<List<UserModel>> getAllUsers() async => await _userRepo.getAllUsers();
->>>>>>> Stashed changes
 
   updateRecord(UserModel user) async {
     await _userRepo.updateUserRecord(user);

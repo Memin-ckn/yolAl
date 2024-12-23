@@ -64,6 +64,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '850626662603',
     projectId: 'yolal-e154b',
     storageBucket: 'yolal-e154b.firebasestorage.app',
+    androidClientId: '850626662603-854q9kt6hls0v6h6uk5prh4gr1cl18r9.apps.googleusercontent.com',
+    iosClientId: '850626662603-gj5uijkqng76c3ut5ugljcc8dkr4nlkp.apps.googleusercontent.com',
     iosBundleId: 'com.example.yolAl',
   );
 
@@ -73,6 +75,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '850626662603',
     projectId: 'yolal-e154b',
     storageBucket: 'yolal-e154b.firebasestorage.app',
+    androidClientId: '850626662603-854q9kt6hls0v6h6uk5prh4gr1cl18r9.apps.googleusercontent.com',
+    iosClientId: '850626662603-gj5uijkqng76c3ut5ugljcc8dkr4nlkp.apps.googleusercontent.com',
     iosBundleId: 'com.example.yolAl',
   );
 
@@ -85,4 +89,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'yolal-e154b.firebasestorage.app',
     measurementId: 'G-Z8WNY77X84',
   );
+
 }

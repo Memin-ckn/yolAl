@@ -12,7 +12,20 @@
           "package_name": "com.example.yolal"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "850626662603-854q9kt6hls0v6h6uk5prh4gr1cl18r9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.yolal",
+            "certificate_hash": "8cacad7c8193df72c98c4012f306dc1b4f50dd59"
+          }
+        },
+        {
+          "client_id": "850626662603-r3i0m9l68ef5hojggasnr06gfcqcp74v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyABDL_48KUV0OWfkNViNYZ1_9xhbrWroyc"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850626662603-ptc5rj037uf2l702qft818id78uirbcl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "850626662603-gj5uijkqng76c3ut5ugljcc8dkr4nlkp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.yolAl"
+              }
+            }
+          ]
         }
       }
     }
