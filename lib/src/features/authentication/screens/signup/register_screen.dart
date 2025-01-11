@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:yol_al/src/features/authentication/controllers/signup_controller.dart';
 import 'package:yol_al/src/features/authentication/screens/signup/widgets/register_form_widget.dart';
 
 class RegisterScreen extends StatelessWidget {
