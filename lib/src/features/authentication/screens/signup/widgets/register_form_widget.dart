@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:yol_al/src/features/authentication/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 import 'package:yol_al/src/features/authentication/controllers/signup_controller.dart';
 import 'package:yol_al/src/features/authentication/models/user_model.dart';
