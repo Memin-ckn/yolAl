@@ -21,7 +21,7 @@ class WelcomeScreen extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                // Giriş sayfasına yönlendirme işlemleri
+                Navigator.pushNamed(context, '/login');
               },
               child: const Text('Giriş Yap'),
             ),

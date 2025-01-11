@@ -24,6 +24,7 @@ class UserRepository extends GetxController {
           backgroundColor: Colors.redAccent,
           colorText: Colors.red);
       print(error.toString());
+      return Future<DocumentReference<Map<String, dynamic>>>.error(error);
     });
   }
 
