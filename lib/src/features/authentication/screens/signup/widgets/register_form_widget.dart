@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:yol_al/src/features/authentication/controllers/signup_controller.dart';
 import 'package:yol_al/src/features/authentication/models/user_model.dart';
-import 'package:yol_al/src/features/authentication/screens/signup/otp_screen.dart';
 
-/* 
-============ 
-Get User and Pass It to Controller 
-============ 
-*/
-
-class SignUpFormWidget extends StatelessWidget {
-  //const SignUpFormWidget(key: _formKey('dfvbheridfhy'));
+class RegisterFormWidget extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -21,11 +12,9 @@ class SignUpFormWidget extends StatelessWidget {
 
     return Container(
       child: Form(
-        key: _formKey, // FormKey burada kullanılıyor
+        key: _formKey,
         child: Column(
           children: [
-            // Buraya form elemanlarını ekleyebilirsiniz
-            // Örnek TextField
             TextFormField(
               controller: controller.email,
               decoration: const InputDecoration(labelText: 'Email'),
@@ -50,15 +39,14 @@ class SignUpFormWidget extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  // Email & Şifre Doğrulama
                   final user = UserModel(
                     email: controller.email.text.trim(),
                     password: controller.password.text.trim(),
                     fullName: controller.fullName.text.trim(),
                     phoneNo: controller.phoneNo.text.trim(),
                   );
-                  SignUpController.instance.createUser(user);
-                  Get.to(() => const OTPScreen());
+                  controller.registerUser(user.email, user.password);
+                  controller.createUser(user);
                 }
               },
               child: const Text('Kayıt Ol'),
