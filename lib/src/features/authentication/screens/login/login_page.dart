@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:yol_al/src/features/authentication/controllers/auth_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -7,6 +11,9 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool isPasswordVisible = false;
+  final AuthController _authController = AuthController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +25,9 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 50),
-              Image.asset(
-                '/assets/images/login.png',
-                height: 300,
-                fit: BoxFit.cover,
-              ),
               SizedBox(height: 40),
               TextField(
+                controller: _emailController,
                 decoration: InputDecoration(
                   hintText: 'Lütfen e-postanızı girin',
                   prefixIcon: Icon(Icons.email),
@@ -43,6 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 alignment: Alignment.centerRight,
                 children: [
                   TextField(
+                    controller: _passwordController,
                     obscureText: !isPasswordVisible,
                     decoration: InputDecoration(
                       hintText: 'Lütfen şifrenizi girin',
@@ -112,7 +115,23 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () async {
+                    String email = _emailController.text;
+                    String password = _passwordController.text;
+                    User? user = await _authController.signInWithEmail(email, password);
+                    if (user != null) {
+                      Navigator.pushNamed(context, '/welcome');
+                    }
+                    else {
+                      Get.showSnackbar(
+                        GetSnackBar(
+                          message: 'Hatalı e-posta veya şifre',
+                          duration: Duration(seconds: 2),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    }
+                  },
                   child: Text(
                     'Giriş Yap',
                     style: TextStyle(
