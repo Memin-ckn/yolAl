@@ -7,6 +7,7 @@ import 'firebase_options.dart';
 import 'package:yol_al/src/features/authentication/screens/forgetPassword/forgot_password_screen.dart';
 import 'package:yol_al/src/features/authentication/screens/signup/register_screen.dart';
 import 'package:yol_al/src/features/authentication/screens/login/login_page.dart';
+import 'package:yol_al/src/features/map/heatmap_page.dart';
 
 // Mainde su flutterbinding firebase falan kalması lazım ona dikkat edelim 
 void main() async {
@@ -29,6 +30,7 @@ class App extends StatelessWidget {
         '/forgot_password': (context) => ForgotPasswordScreen(),
         '/register': (context) => RegisterScreen(),
         '/login': (context) => LoginScreen(),
+        '/heatmap': (context) => HeatMapPage(),
       },
     );
   }
