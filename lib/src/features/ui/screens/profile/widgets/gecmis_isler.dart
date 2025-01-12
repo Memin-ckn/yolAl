@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/is_model.dart';
+import '../../../models/is_model.dart';
 
 class GecmisIslerPage extends StatelessWidget {
   final List<IsModel> isler = [

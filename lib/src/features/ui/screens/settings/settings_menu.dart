@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'Settings/bildirim.dart';
-import 'Settings/güvenlik.dart';
-import 'Settings/diltercihi.dart';
-import 'Settings/hesapbilgiler.dart';
+import 'widgets/bildirim.dart';
+import 'widgets/güvenlik.dart';
+import 'widgets/diltercihi.dart';
+import 'widgets/hesapbilgiler.dart';
 
 class AyarlarPage extends StatelessWidget {
   @override

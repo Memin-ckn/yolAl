@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import '../profile/profile_screen.dart';
 import '../settings/settings_menu.dart';
-import '../widgets/bottom_nav_bar.dart';
+import '../../../../common_widgets/bottom_nav_bar.dart';
 
 class AnaSayfa extends StatefulWidget {
+  const AnaSayfa({super.key});
+
   @override
-  _AnaSayfaState createState() => _AnaSayfaState();
+  AnaSayfaState createState() => AnaSayfaState();
 }
 
-class _AnaSayfaState extends State<AnaSayfa> {
+class AnaSayfaState extends State<AnaSayfa> {
   int _selectedIndex = 0;
 
   static final List<Widget> _pages = <Widget>[
