@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yol_al/src/features/map/screens/heatmap_page.dart';
 import '../profile/profile_screen.dart';
 import '../settings/settings_menu.dart';
 import '../../../../common_widgets/bottom_nav_bar.dart';
@@ -16,7 +17,7 @@ class AnaSayfaState extends State<AnaSayfa> {
   static final List<Widget> _pages = <Widget>[
     Center(child: Text('İş Koyma')),
     Center(child: Text('Pazar Yeri')),
-    Center(child: Text('Harita')),
+    HeatMapPage(),
     HesabimPage(),
     AyarlarPage(),
   ];
