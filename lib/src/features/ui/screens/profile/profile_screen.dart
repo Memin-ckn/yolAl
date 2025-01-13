@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 import 'widgets/gecmis_isler.dart';
+import '../../../../common_widgets/bottom_nav_bar.dart';
 
-class HesabimPage extends StatelessWidget {
+class HesabimPage extends StatefulWidget {
+  @override
+  State<HesabimPage> createState() => _HesabimPageState();
+}
+
+class _HesabimPageState extends State<HesabimPage> {
   final gecmisIsler = GecmisIslerPage().isler;
+  int _selectedIndex = 3; // Profil sekmesi için 3. index
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,6 +111,10 @@ class HesabimPage extends StatelessWidget {
                   ))
               .toList(),
         ],
+      ),
+      bottomNavigationBar: CustomBottomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:yol_al/src/features/authentication/screens/WelcomeScreen/welcome_screen.dart';
 import 'package:yol_al/src/features/ui/screens/home/home_screen.dart';
+import 'package:yol_al/src/features/ui/screens/settings/settings_menu.dart';
 import 'package:yol_al/src/repository/authentication%20repository/authentication_repository.dart';
 import 'firebase_options.dart';
 import 'package:yol_al/src/features/authentication/screens/forgetPassword/forgot_password_screen.dart';
@@ -31,6 +32,7 @@ class App extends StatelessWidget {
         '/register': (context) => RegisterScreen(),
         '/login': (context) => LoginScreen(),
         '/home': (context) => AnaSayfa(),
+        '/settings': (context) => AyarlarPage(),
       },
     );
   }

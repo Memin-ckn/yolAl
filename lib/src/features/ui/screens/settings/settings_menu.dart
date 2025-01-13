@@ -3,8 +3,22 @@ import 'widgets/bildirim.dart';
 import 'widgets/güvenlik.dart';
 import 'widgets/diltercihi.dart';
 import 'widgets/hesapbilgiler.dart';
+import '../../../../common_widgets/bottom_nav_bar.dart';
 
-class AyarlarPage extends StatelessWidget {
+class AyarlarPage extends StatefulWidget {
+  @override
+  State<AyarlarPage> createState() => _AyarlarPageState();
+}
+
+class _AyarlarPageState extends State<AyarlarPage> {
+  int _selectedIndex = 4; // Ayarlar sekmesi için 4. index
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,6 +83,10 @@ class AyarlarPage extends StatelessWidget {
             },
           ),
         ],
+      ),
+      bottomNavigationBar: CustomBottomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }
