@@ -5,11 +5,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  LoginScreenState createState() => LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class LoginScreenState extends State<LoginScreen> {
   bool isPasswordVisible = false;
   final AuthController _authController = AuthController();
   final TextEditingController _emailController = TextEditingController();
@@ -120,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     String password = _passwordController.text;
                     User? user = await _authController.signInWithEmail(email, password);
                     if (user != null) {
-                      Navigator.pushNamed(context, '/welcome');
+                      Navigator.pushNamed(context, '/home');
                     }
                     else {
                       Get.showSnackbar(
