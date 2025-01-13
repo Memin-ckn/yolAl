@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'job_model.dart';
-import 'job_repository.dart';
+import '../models/job_model.dart';
+import '../repositorys/job_repository.dart';
 
 class HeatmapController extends GetxController {
   final JobRepository jobRepository;

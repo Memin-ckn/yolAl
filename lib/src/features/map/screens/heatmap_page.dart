@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'heatmap_controller.dart';
-import 'job_repository.dart';
+import '../controllers/heatmap_controller.dart';
+import '../repositorys/job_repository.dart';
 
 class HeatMapPage extends StatelessWidget {
   final HeatmapController heatmapController =

@@ -5,13 +5,15 @@ import 'package:yol_al/src/features/authentication/screens/WelcomeScreen/welcome
 import 'package:yol_al/src/features/ui/screens/home/home_screen.dart';
 import 'package:yol_al/src/features/ui/screens/settings/settings_menu.dart';
 import 'package:yol_al/src/repository/authentication%20repository/authentication_repository.dart';
-import 'firebase_options.dart';
 import 'package:yol_al/src/features/authentication/screens/forgetPassword/forgot_password_screen.dart';
 import 'package:yol_al/src/features/authentication/screens/signup/register_screen.dart';
 import 'package:yol_al/src/features/authentication/screens/login/login_page.dart';
-import 'package:yol_al/src/features/map/heatmap_page.dart';
+import 'package:yol_al/src/features/map/screens/heatmap_page.dart';
+import 'package:yol_al/src/features/map/screens/category_selection_page.dart';
+import 'package:yol_al/src/features/map/screens/form_carrier_page.dart';
+import 'package:yol_al/src/features/map/screens/form_employer_page.dart';
+import 'firebase_options.dart';
 
-// Mainde su flutterbinding firebase falan kalması lazım ona dikkat edelim
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
@@ -24,18 +26,25 @@ class App extends StatelessWidget {
   const App({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: WelcomeScreen(),
+    return GetMaterialApp( // MaterialApp yerine GetMaterialApp kullanıyoruz
       debugShowCheckedModeBanner: false,
-      routes: {
-        '/welcome': (context) => WelcomeScreen(),
-        '/forgot_password': (context) => ForgotPasswordScreen(),
-        '/register': (context) => RegisterScreen(),
-        '/login': (context) => LoginScreen(),
-        '/heatmap': (context) => HeatMapPage(),
-        '/home': (context) => AnaSayfa(),
-        '/settings': (context) => AyarlarPage(),
-      },
+      initialRoute: '/welcome', // İlk açılışta yönlendirme
+      getPages: [
+        // Navigasyon rotaları
+        GetPage(name: '/welcome', page: () => WelcomeScreen()),
+        GetPage(name: '/forgot_password', page: () => ForgotPasswordScreen()),
+        GetPage(name: '/register', page: () => RegisterScreen()),
+        GetPage(name: '/login', page: () => LoginScreen()),
+        GetPage(name: '/heatmap', page: () => HeatMapPage()), // Harita sayfası
+        GetPage(
+          name: '/category_selection',
+          page: () => CategorySelectionPage(),
+        ), // Kategori seçimi
+        GetPage(name: '/carrier_form', page: () => FormCarrierPage()), // Taşıyıcı formu
+        GetPage(name: '/employer_form', page: () => FormEmployerPage()), // İş veren formu
+        GetPage(name: '/home', page: () => AnaSayfa()),
+        GetPage(name: '/settings', page: () => AyarlarPage()),
+      ],
     );
   }
 }
