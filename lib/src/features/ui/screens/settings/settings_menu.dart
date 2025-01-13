@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'widgets/bildirim.dart';
 import 'widgets/güvenlik.dart';
 import 'widgets/diltercihi.dart';
 import 'widgets/hesapbilgiler.dart';
-import '../../../../common_widgets/bottom_nav_bar.dart';
 
 class AyarlarPage extends StatefulWidget {
   const AyarlarPage({super.key});
@@ -13,13 +13,6 @@ class AyarlarPage extends StatefulWidget {
 }
 
 class _AyarlarPageState extends State<AyarlarPage> {
-  int _selectedIndex = 4; // Ayarlar sekmesi için 4. index
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,40 +27,28 @@ class _AyarlarPageState extends State<AyarlarPage> {
             leading: Icon(Icons.person),
             title: Text('Hesap Bilgileri'),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HesapBilgiPage()),
-              );
+              Get.to(() => HesapBilgiPage());
             },
           ),
           ListTile(
             leading: Icon(Icons.notifications),
             title: Text('Bildirimler'),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => BildirimlerPage()),
-              );
+              Get.to(() => BildirimlerPage());
             },
           ),
           ListTile(
             leading: Icon(Icons.security),
             title: Text('Güvenlik'),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => GuvenlikPage()),
-              );
+              Get.to(() => GuvenlikPage());
             },
           ),
           ListTile(
             leading: Icon(Icons.language),
             title: Text('Dil Tercihi'),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => DilTercihiPage()),
-              );
+              Get.to(() => DilTercihiPage());
             },
           ),
           ListTile(
@@ -85,11 +66,7 @@ class _AyarlarPageState extends State<AyarlarPage> {
             },
           ),
         ],
-      ),
-      bottomNavigationBar: CustomBottomNavBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
-      ),
+      )
     );
   }
 }

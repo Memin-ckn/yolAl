@@ -23,7 +23,7 @@ class WelcomeScreen extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                GetPage(name: '/login', page: () => LoginScreen());
+                Get.to(() => LoginScreen());
               },
               child: const Text('Giriş Yap'),
             ),

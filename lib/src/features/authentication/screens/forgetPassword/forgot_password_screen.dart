@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
@@ -18,7 +19,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: IconButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Get.back();
                   },
                   icon: const Icon(Icons.arrow_back),
                 ),

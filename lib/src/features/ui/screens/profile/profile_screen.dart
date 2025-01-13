@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'widgets/gecmis_isler.dart';
-import '../../../../common_widgets/bottom_nav_bar.dart';
 
 class HesabimPage extends StatefulWidget {
   const HesabimPage({super.key});
@@ -11,13 +11,6 @@ class HesabimPage extends StatefulWidget {
 
 class _HesabimPageState extends State<HesabimPage> {
   final gecmisIsler = GecmisIslerPage().isler;
-  int _selectedIndex = 3; // Profil sekmesi için 3. index
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,10 +60,7 @@ class _HesabimPageState extends State<HesabimPage> {
             title: Text("Geçmiş İşler"),
             trailing: Icon(Icons.arrow_forward_ios),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => GecmisIslerPage()),
-              );
+              Get.to(() => GecmisIslerPage());
             },
           ),
           Padding(
@@ -111,13 +101,9 @@ class _HesabimPageState extends State<HesabimPage> {
                       ),
                     ),
                   ))
-              .toList(),
+              ,
         ],
-      ),
-      bottomNavigationBar: CustomBottomNavBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
-      ),
+      )
     );
   }
 }

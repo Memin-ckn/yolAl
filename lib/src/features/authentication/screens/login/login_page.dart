@@ -97,7 +97,7 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      GetPage(name: '/forgot_password', page: () => ForgotPasswordScreen());
+                      Get.to(() => ForgotPasswordScreen());
                     },
                     child: Text(
                       'Şifremi Unuttum',
@@ -125,7 +125,7 @@ class LoginScreenState extends State<LoginScreen> {
                     String password = _passwordController.text;
                     User? user = await _authController.signInWithEmail(email, password);
                     if (user != null) {
-                      GetPage(name: '/home', page: () => AnaSayfa());
+                      Get.to(AnaSayfa());
                     }
                     else {
                       Get.showSnackbar(
@@ -197,7 +197,7 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      GetPage(name: '/register', page: () => RegisterScreen());
+                      Get.to(RegisterScreen());
                     },
                     child: Text(
                       'Kayıt Ol',
