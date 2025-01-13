@@ -4,6 +4,8 @@ import 'form_carrier_page.dart';
 import 'form_employer_page.dart';
 
 class CategorySelectionPage extends StatelessWidget {
+  const CategorySelectionPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,25 +1,13 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: BildirimlerPage(),
-    );
-  }
-}
-
 class BildirimlerPage extends StatefulWidget {
+  const BildirimlerPage({super.key});
+
   @override
-  _BildirimlerPageState createState() => _BildirimlerPageState();
+  BildirimlerPageState createState() => BildirimlerPageState();
 }
 
-class _BildirimlerPageState extends State<BildirimlerPage> {
+class BildirimlerPageState extends State<BildirimlerPage> {
   bool _bildirimAcik = false; // Başlangıçta bildirimler kapalı
 
   @override

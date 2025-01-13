@@ -1,25 +1,14 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: DilTercihiPage(),
-    );
-  }
-}
 
 class DilTercihiPage extends StatefulWidget {
+  const DilTercihiPage({super.key});
+
   @override
-  _DilTercihiPageState createState() => _DilTercihiPageState();
+  DilTercihiPageState createState() => DilTercihiPageState();
 }
 
-class _DilTercihiPageState extends State<DilTercihiPage> {
+class DilTercihiPageState extends State<DilTercihiPage> {
   String _seciliDil = "Türkçe"; // Varsayılan dil Türkçe
 
   @override

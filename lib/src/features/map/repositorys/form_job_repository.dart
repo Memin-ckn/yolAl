@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 import '../models/job_model.dart';
 
 class FormJobRepository {
@@ -8,7 +9,7 @@ class FormJobRepository {
     try {
       await _firestore.collection('jobs').add(job.toJson());
     } catch (e) {
-      print('Error adding job: $e');
+      Get.snackbar('Error', 'Error adding job: $e');
     }
   }
 }

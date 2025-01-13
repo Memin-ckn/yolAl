@@ -3,6 +3,8 @@ import 'widgets/gecmis_isler.dart';
 import '../../../../common_widgets/bottom_nav_bar.dart';
 
 class HesabimPage extends StatefulWidget {
+  const HesabimPage({super.key});
+
   @override
   State<HesabimPage> createState() => _HesabimPageState();
 }

@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 
 class AuthController {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -13,7 +14,7 @@ class AuthController {
       return userCredential.user;
     } catch (e) {
       // Handle errors
-      print('Error during sign-in: $e');
+      Get.snackbar('Error', 'Error during sign-in: $e');
       return null;
     }
   }
@@ -23,7 +24,7 @@ class AuthController {
     try {
       await _firebaseAuth.signOut();
     } catch (e) {
-      print('Error during sign-out: $e');
+      Get.snackbar('Error', 'Error during sign-out: $e');
     }
   }
 

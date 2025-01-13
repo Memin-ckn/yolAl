@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yol_al/src/features/authentication/controllers/auth_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:yol_al/src/features/authentication/screens/forgetPassword/forgot_password_screen.dart';
+import 'package:yol_al/src/features/authentication/screens/signup/register_screen.dart';
+import 'package:yol_al/src/features/ui/screens/home/home_screen.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -94,7 +97,7 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/forgot_password');
+                      GetPage(name: '/forgot_password', page: () => ForgotPasswordScreen());
                     },
                     child: Text(
                       'Şifremi Unuttum',
@@ -122,7 +125,7 @@ class LoginScreenState extends State<LoginScreen> {
                     String password = _passwordController.text;
                     User? user = await _authController.signInWithEmail(email, password);
                     if (user != null) {
-                      Navigator.pushNamed(context, '/home');
+                      GetPage(name: '/home', page: () => AnaSayfa());
                     }
                     else {
                       Get.showSnackbar(
@@ -194,7 +197,7 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/register');
+                      GetPage(name: '/register', page: () => RegisterScreen());
                     },
                     child: Text(
                       'Kayıt Ol',

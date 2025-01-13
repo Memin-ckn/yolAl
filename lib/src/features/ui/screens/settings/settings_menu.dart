@@ -6,6 +6,8 @@ import 'widgets/hesapbilgiler.dart';
 import '../../../../common_widgets/bottom_nav_bar.dart';
 
 class AyarlarPage extends StatefulWidget {
+  const AyarlarPage({super.key});
+
   @override
   State<AyarlarPage> createState() => _AyarlarPageState();
 }

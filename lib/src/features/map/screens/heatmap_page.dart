@@ -8,6 +8,8 @@ class HeatMapPage extends StatelessWidget {
   final HeatmapController heatmapController =
       Get.put(HeatmapController(jobRepository: JobRepository()));
 
+  HeatMapPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

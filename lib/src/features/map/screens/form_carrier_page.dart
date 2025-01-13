@@ -11,6 +11,8 @@ class FormCarrierPage extends StatelessWidget {
   final TextEditingController currentLocationController =
       TextEditingController();
 
+  FormCarrierPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

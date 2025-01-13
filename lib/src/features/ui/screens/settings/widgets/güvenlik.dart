@@ -1,25 +1,14 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: GuvenlikPage(),
-    );
-  }
-}
 
 class GuvenlikPage extends StatefulWidget {
+  const GuvenlikPage({super.key});
+
   @override
-  _GuvenlikPageState createState() => _GuvenlikPageState();
+  GuvenlikPageState createState() => GuvenlikPageState();
 }
 
-class _GuvenlikPageState extends State<GuvenlikPage> {
+class GuvenlikPageState extends State<GuvenlikPage> {
   final _formKey = GlobalKey<FormState>();
 
   // TextEditingController'lar

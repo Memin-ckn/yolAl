@@ -16,6 +16,8 @@ class GecmisIslerPage extends StatelessWidget {
     // ... diğer işler
   ];
 
+  GecmisIslerPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

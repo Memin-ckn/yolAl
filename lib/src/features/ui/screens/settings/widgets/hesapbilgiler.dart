@@ -1,25 +1,13 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HesapBilgiPage(),
-    );
-  }
-}
-
 class HesapBilgiPage extends StatefulWidget {
+  const HesapBilgiPage({super.key});
+
   @override
-  _HesapBilgiPageState createState() => _HesapBilgiPageState();
+  HesapBilgiPageState createState() => HesapBilgiPageState();
 }
 
-class _HesapBilgiPageState extends State<HesapBilgiPage> {
+class HesapBilgiPageState extends State<HesapBilgiPage> {
   late Future<Map<String, String>> _kullaniciBilgileri;
 
   @override
