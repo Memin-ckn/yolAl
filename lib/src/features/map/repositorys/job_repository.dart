@@ -1,4 +1,4 @@
-import 'job_model.dart';
+import '../models/job_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class JobRepository {
