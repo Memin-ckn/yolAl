@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yol_al/src/features/authentication/screens/WelcomeScreen/welcome_screen.dart';
-import 'package:yol_al/src/repository/authentication%20repository/authentication_repository.dart';
 import 'package:yol_al/src/repository/user_repository/user_repository.dart';
 import '../models/user_model.dart';
 
@@ -14,19 +13,20 @@ class SignUpController extends GetxController {
   final phoneNo = TextEditingController();
 
   final userRepo = Get.put(UserRepository());
-  final authRepo = Get.put(AuthenticationRepository());
 
-  void registerUser(String email, String password) async {
+  void registerUser() async {
+    final user = UserModel(
+      email: email.text.trim(),
+      password: password.text.trim(),
+      fullName: fullName.text.trim(),
+      phoneNo: phoneNo.text.trim(),
+    );
+
     try {
-      await authRepo.createUserWithEmailAndPassword(email, password);
+      await userRepo.createUserWithEmailAndPassword(user);
       Get.to(() => const WelcomeScreen());
     } catch (e) {
       Get.showSnackbar(GetSnackBar(message: e.toString()));
     }
-  }
-
-  Future<void> createUser(UserModel user) async {
-    await userRepo.createUser(user);
-    Get.to(() => const WelcomeScreen()); // Navigate to a success screen or home screen
   }
 }

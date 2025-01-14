@@ -1,16 +1,23 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yol_al/src/features/authentication/models/user_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();
 
+  final _auth = FirebaseAuth.instance;
   final _db = FirebaseFirestore.instance;
 
-  createUser(UserModel user) async {
+  Future<void> createUserWithEmailAndPassword(UserModel user) async {
     try {
-      await _db.collection("Users").add(user.toJson()).then((_) {
+      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+        email: user.email,
+        password: user.password,
+      );
+      user.id = userCredential.user?.uid;
+      await _db.collection("Users").doc(user.id).set(user.toJson()).then((_) {
         Get.snackbar(
           "Success",
           "Your account has been created.",
@@ -23,6 +30,48 @@ class UserRepository extends GetxController {
       Get.snackbar(
         "Error",
         "Something went wrong.",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.redAccent,
+        colorText: Colors.white,
+      );
+      print(error.toString());
+    }
+  }
+
+  Future<User?> signInWithEmailAndPassword(String email, String password) async {
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return userCredential.user;
+    } catch (error) {
+      Get.snackbar(
+        "Error",
+        "Failed to sign in.",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.redAccent,
+        colorText: Colors.white,
+      );
+      print(error.toString());
+      return null;
+    }
+  }
+
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+      Get.snackbar(
+        "Success",
+        "Signed out successfully.",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
+    } catch (error) {
+      Get.snackbar(
+        "Error",
+        "Failed to sign out.",
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.redAccent,
         colorText: Colors.white,
