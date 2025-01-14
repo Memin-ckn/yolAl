@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yol_al/src/features/authentication/controllers/signup_controller.dart';
+import 'package:yol_al/src/features/authentication/screens/login/login_page.dart';
 
 class RegisterFormWidget extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -40,6 +41,10 @@ class RegisterFormWidget extends StatelessWidget {
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 controller.registerUser();
+                Get.to(() => const LoginScreen());
+              }
+              else {
+                Get.snackbar('Hata', 'Lütfen tüm alanları doldurun');
               }
             },
             child: const Text('Kayıt Ol'),
