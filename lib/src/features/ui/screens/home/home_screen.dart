@@ -3,6 +3,7 @@ import 'package:yol_al/src/features/map/screens/heatmap_page.dart';
 import '../profile/profile_screen.dart';
 import '../settings/settings_menu.dart';
 import '../../../../common_widgets/bottom_nav_bar.dart';
+import '../../../map/screens/category_selection_page.dart';
 
 class AnaSayfa extends StatefulWidget {
   const AnaSayfa({super.key});
@@ -15,7 +16,7 @@ class AnaSayfaState extends State<AnaSayfa> {
   int _selectedIndex = 0;
 
   static final List<Widget> _pages = <Widget>[
-    Center(child: Text('İş Koyma')),
+    CategorySelectionPage(),
     Center(child: Text('Pazar Yeri')),
     HeatMapPage(),
     HesabimPage(),
