@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:yol_al/src/features/ui/screens/home/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:yol_al/src/features/ui/screens/job_post/category_selection_page.dart';
 
 class OTPController extends GetxController {
   static OTPController get instance => Get.find();
@@ -14,7 +14,7 @@ class OTPController extends GetxController {
       timeout: const Duration(seconds: 60),
       verificationCompleted: (PhoneAuthCredential credential) async {
         await _auth.signInWithCredential(credential);
-        Get.offAll(const AnaSayfa());
+        Get.offAll(const CategorySelectionPage());
       },
       verificationFailed: (FirebaseAuthException e) {
         Get.snackbar('Error', e.message ?? 'Verification failed');
@@ -36,7 +36,7 @@ class OTPController extends GetxController {
         smsCode: otp,
       );
       await _auth.signInWithCredential(credential);
-      Get.offAll(const AnaSayfa());
+      Get.offAll(const CategorySelectionPage());
     } catch (e) {
       Get.snackbar('Error', 'Invalid OTP');
     }

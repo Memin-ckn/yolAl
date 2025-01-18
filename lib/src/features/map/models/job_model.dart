@@ -1,16 +1,16 @@
 class JobModel {
-  final String id; // 1: İş veren, 2: Taşıyıcı
-  final String category; // "carrier" veya "employer"
-  final String title; // Harita için kısa açıklama
-  final String description; // Genel açıklama
-  final String vehicleType; // Taşıyıcı için
-  final double maxLoadCapacity; // Taşıyıcı için
-  final String plateNumber; // Taşıyıcı için
-  final String currentLocation; // Taşıyıcı için
-  final String destination; // İş veren için
-  final String materialType; // İş veren için (katı/sıvı)
-  final double latitude; // Harita için
-  final double longitude; // Harita için
+  final String id;
+  final String category;
+  final String title;
+  final String description;
+  final String vehicleType;
+  final double maxLoadCapacity;
+  final String plateNumber;
+  final String currentLocation;
+  final String destination;
+  final String materialType;
+  final double latitude;
+  final double longitude;
 
   JobModel({
     required this.id,
@@ -29,18 +29,18 @@ class JobModel {
 
   factory JobModel.fromJson(Map<String, dynamic> json) {
     return JobModel(
-      id: json['id'],
-      category: json['category'],
-      title: json['title'],
-      description: json['description'],
+      id: json['id'] ?? '',
+      category: json['category'] ?? '',
+      title: json['title'] ?? '',
+      description: json['description'] ?? '',
       vehicleType: json['vehicleType'] ?? '',
-      maxLoadCapacity: json['maxLoadCapacity']?.toDouble() ?? 0.0,
+      maxLoadCapacity: (json['maxLoadCapacity'] ?? 0.0).toDouble(),
       plateNumber: json['plateNumber'] ?? '',
       currentLocation: json['currentLocation'] ?? '',
       destination: json['destination'] ?? '',
       materialType: json['materialType'] ?? '',
-      latitude: json['latitude']?.toDouble() ?? 0.0,
-      longitude: json['longitude']?.toDouble() ?? 0.0,
+      latitude: (json['latitude'] ?? 0.0).toDouble(),
+      longitude: (json['longitude'] ?? 0.0).toDouble(),
     );
   }
 
