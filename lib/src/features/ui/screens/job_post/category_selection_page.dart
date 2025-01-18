@@ -2,26 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'form_carrier_page.dart';
 import 'form_employer_page.dart';
+import '../../../../common_widgets/bottom_nav_bar.dart';
 
-class CategorySelectionPage extends StatelessWidget {
+class CategorySelectionPage extends StatefulWidget {
   const CategorySelectionPage({super.key});
+
+  @override
+  CategorySelectionPageState createState() => CategorySelectionPageState();
+}
+
+class CategorySelectionPageState extends State<CategorySelectionPage> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    
+    // Handle navigation based on bottom nav bar selection
+    switch (index) {
+      case 2:
+        Get.toNamed('/heatmap');
+        break;
+      case 3:
+        Get.toNamed('/profile');
+        break;
+      case 4:
+        Get.toNamed('/settings');
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Kategori Seçimi'),
-        backgroundColor: Colors.teal[400], // Pastel yeşil bir renk
+        backgroundColor: Colors.teal[400],
         centerTitle: true,
         elevation: 0,
       ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Colors.teal[50]!,
-              Colors.blueGrey[50]!
-            ], // Soft ve uyumlu tonlar
+            colors: [Colors.teal[50]!, Colors.blueGrey[50]!],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -48,6 +72,10 @@ class CategorySelectionPage extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: CustomBottomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }

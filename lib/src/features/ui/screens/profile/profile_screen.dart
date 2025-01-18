@@ -1,16 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yol_al/src/features/ui/screens/job_post/category_selection_page.dart';
 import 'widgets/gecmis_isler.dart';
+import '../../../../common_widgets/bottom_nav_bar.dart';
 
 class HesabimPage extends StatefulWidget {
   const HesabimPage({super.key});
 
   @override
-  State<HesabimPage> createState() => _HesabimPageState();
+  State<HesabimPage> createState() => HesabimPageState();
 }
 
-class _HesabimPageState extends State<HesabimPage> {
+class HesabimPageState extends State<HesabimPage> {
   final gecmisIsler = GecmisIslerPage().isler;
+  int _selectedIndex = 3; // Set to 3 since this is the profile tab
+
+  void _onItemTapped(int index) {
+    if (index == _selectedIndex) return;
+    
+    switch (index) {
+      case 0:
+        Get.offAll(() => CategorySelectionPage());
+        break;
+      case 2:
+        Get.toNamed('/heatmap');
+        break;
+      case 4:
+        Get.toNamed('/settings');
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +122,11 @@ class _HesabimPageState extends State<HesabimPage> {
                   ))
               ,
         ],
-      )
+      ),
+      bottomNavigationBar: CustomBottomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
+      ),
     );
   }
 }

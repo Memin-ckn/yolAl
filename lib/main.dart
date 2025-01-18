@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:yol_al/src/features/authentication/screens/WelcomeScreen/welcome_screen.dart';
-import 'package:yol_al/src/features/ui/screens/home/home_screen.dart';
+import 'package:yol_al/src/features/ui/screens/profile/profile_screen.dart';
 import 'package:yol_al/src/features/ui/screens/settings/settings_menu.dart';
 import 'package:yol_al/src/repository/authentication%20repository/authentication_repository.dart';
 import 'package:yol_al/src/features/authentication/screens/forgetPassword/forgot_password_screen.dart';
@@ -36,13 +36,10 @@ class App extends StatelessWidget {
         GetPage(name: '/register', page: () => RegisterScreen()),
         GetPage(name: '/login', page: () => LoginScreen()),
         GetPage(name: '/heatmap', page: () => HeatMapPage()), // Harita sayfası
-        GetPage(
-          name: '/category_selection',
-          page: () => CategorySelectionPage(),
-        ), // Kategori seçimi
+        GetPage(name: '/category_selection', page: () => CategorySelectionPage()),
         GetPage(name: '/carrier_form', page: () => FormCarrierPage()), // Taşıyıcı formu
         GetPage(name: '/employer_form', page: () => FormEmployerPage()), // İş veren formu
-        GetPage(name: '/home', page: () => AnaSayfa()),
+        GetPage(name: '/profile', page: () => HesabimPage()),
         GetPage(name: '/settings', page: () => AyarlarPage()),
       ],
     );
