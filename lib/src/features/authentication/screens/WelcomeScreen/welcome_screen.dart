@@ -65,7 +65,7 @@ class WelcomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'lib/src/assets/welcomeScreen.png', // İllustrasyon/ikon
+                      'assets/images/welcomeScreen.png', // İllustrasyon/ikon
                       height: 200,
                     ),
                     const SizedBox(height: 20),

@@ -28,7 +28,7 @@ class _HesabimPageState extends State<HesabimPage> {
               children: [
                 CircleAvatar(
                   radius: 40,
-                  backgroundImage: AssetImage('assets/profile.jpg'),
+                  backgroundImage: AssetImage('assets/images/profile.png'),
                 ),
                 SizedBox(width: 16),
                 Column(

@@ -3,7 +3,7 @@ import 'package:yol_al/src/features/map/screens/heatmap_page.dart';
 import '../profile/profile_screen.dart';
 import '../settings/settings_menu.dart';
 import '../../../../common_widgets/bottom_nav_bar.dart';
-import '../../../map/screens/category_selection_page.dart';
+import '../job_post/category_selection_page.dart';
 
 class AnaSayfa extends StatefulWidget {
   const AnaSayfa({super.key});

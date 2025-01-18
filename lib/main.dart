@@ -9,9 +9,9 @@ import 'package:yol_al/src/features/authentication/screens/forgetPassword/forgot
 import 'package:yol_al/src/features/authentication/screens/signup/register_screen.dart';
 import 'package:yol_al/src/features/authentication/screens/login/login_page.dart';
 import 'package:yol_al/src/features/map/screens/heatmap_page.dart';
-import 'package:yol_al/src/features/map/screens/category_selection_page.dart';
-import 'package:yol_al/src/features/map/screens/form_carrier_page.dart';
-import 'package:yol_al/src/features/map/screens/form_employer_page.dart';
+import 'package:yol_al/src/features/ui/screens/job_post/category_selection_page.dart';
+import 'package:yol_al/src/features/ui/screens/job_post/form_carrier_page.dart';
+import 'package:yol_al/src/features/ui/screens/job_post/form_employer_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
