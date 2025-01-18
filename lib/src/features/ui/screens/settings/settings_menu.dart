@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yol_al/src/features/ui/screens/job_post/category_selection_page.dart';
 import 'widgets/bildirim.dart';
 import 'widgets/güvenlik.dart';
 import 'widgets/diltercihi.dart';
 import 'widgets/hesapbilgiler.dart';
+import '../../../../common_widgets/bottom_nav_bar.dart';
 
 class AyarlarPage extends StatefulWidget {
   const AyarlarPage({super.key});
@@ -13,6 +15,23 @@ class AyarlarPage extends StatefulWidget {
 }
 
 class _AyarlarPageState extends State<AyarlarPage> {
+  int _selectedIndex = 4; // Set to 4 since this is the settings tab
+
+  void _onItemTapped(int index) {
+    if (index == _selectedIndex) return;
+    
+    switch (index) {
+      case 0:
+        Get.offAll(() => CategorySelectionPage());
+        break;
+      case 2:
+        Get.toNamed('/heatmap');
+        break;
+      case 3:
+        Get.toNamed('/profile');
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +85,11 @@ class _AyarlarPageState extends State<AyarlarPage> {
             },
           ),
         ],
-      )
+      ),
+      bottomNavigationBar: CustomBottomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
+      ),
     );
   }
 }

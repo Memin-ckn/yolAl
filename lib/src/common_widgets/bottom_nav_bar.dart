@@ -30,7 +30,7 @@ class CustomBottomNavBar extends StatelessWidget {
         BottomNavigationBarItem(
           icon: CircleAvatar(
             radius: 14,
-            backgroundImage: AssetImage('assets/profile.jpg'),
+            backgroundImage: AssetImage('assets/images/profile.png'),
           ),
           label: '',
         ),

@@ -4,7 +4,7 @@ import 'package:yol_al/src/features/authentication/controllers/auth_controller.d
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:yol_al/src/features/authentication/screens/forgetPassword/forgot_password_screen.dart';
 import 'package:yol_al/src/features/authentication/screens/signup/register_screen.dart';
-import 'package:yol_al/src/features/ui/screens/home/home_screen.dart';
+import 'package:yol_al/src/features/ui/screens/job_post/category_selection_page.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -125,7 +125,7 @@ class LoginScreenState extends State<LoginScreen> {
                     String password = _passwordController.text;
                     User? user = await _authController.signInWithEmail(email, password);
                     if (user != null) {
-                      Get.to(AnaSayfa());
+                      Get.offAll(() => CategorySelectionPage());
                     }
                     else {
                       Get.showSnackbar(
