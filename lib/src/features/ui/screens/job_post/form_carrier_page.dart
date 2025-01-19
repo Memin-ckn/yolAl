@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../../../map/widgets/map_picker.dart'; 
 
 class FormCarrierPage extends StatefulWidget {
   const FormCarrierPage({super.key});
@@ -14,8 +16,7 @@ class _FormCarrierPageState extends State<FormCarrierPage> {
   final TextEditingController vehicleTypeController = TextEditingController();
   final TextEditingController maxCapacityController = TextEditingController();
   final TextEditingController plateNumberController = TextEditingController();
-  final TextEditingController currentLocationController =
-      TextEditingController();
+  LatLng? currentLocation; // Seçilen konum için değişken
 
   bool isSubmitting = false; // Gönderim işlemi kontrolü
 
@@ -32,7 +33,9 @@ class _FormCarrierPageState extends State<FormCarrierPage> {
       'vehicleType': vehicleTypeController.text.trim(),
       'maxCapacity': maxCapacityController.text.trim(),
       'plateNumber': plateNumberController.text.trim(),
-      'currentLocation': currentLocationController.text.trim(),
+      'currentLocation': currentLocation != null
+          ? '${currentLocation!.latitude}, ${currentLocation!.longitude}'
+          : 'Konum Belirtilmedi',
       'timestamp': FieldValue.serverTimestamp(),
     };
 
@@ -76,6 +79,20 @@ class _FormCarrierPageState extends State<FormCarrierPage> {
     }
   }
 
+  Future<void> _pickLocation() async {
+    await showDialog(
+      context: context,
+      builder: (context) => MapPicker(
+        onLocationSelected: (LatLng location) {
+          setState(() {
+            currentLocation = location;
+          });
+        },
+        initialLocation: currentLocation,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,7 +113,14 @@ class _FormCarrierPageState extends State<FormCarrierPage> {
             const SizedBox(height: 20),
             _buildInputField('Plaka Numarası', plateNumberController),
             const SizedBox(height: 20),
-            _buildInputField('Şu Anki Konum', currentLocationController),
+            ElevatedButton(
+              onPressed: _pickLocation,
+              child: Text(
+                currentLocation != null
+                    ? 'Seçilen Konum: ${currentLocation!.latitude}, ${currentLocation!.longitude}'
+                    : 'Şu Anki Konumu Seç',
+              ),
+            ),
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: submitForm,

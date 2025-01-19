@@ -20,6 +20,7 @@ class OTPScreenState extends State<OTPScreen> {
     final otp = _otpController.text.trim();
     if (otp.isNotEmpty) {
       // Burada OTP doğrulama işlemi yapılır
+      // ignore: avoid_print
       print('Girilen OTP: $otp');
       // Firebase OTP doğrulama kodu buraya eklenebilir
     } else {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../../../map/widgets/map_picker.dart';
 
 class FormEmployerPage extends StatefulWidget {
   const FormEmployerPage({super.key});
@@ -12,10 +14,9 @@ class _FormEmployerPageState extends State<FormEmployerPage> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   final TextEditingController loadTypeController = TextEditingController();
-  final TextEditingController destinationController = TextEditingController();
-
+  LatLng? destinationLocation; // Seçilen konum
   String selectedMaterialType = 'Katı'; // Varsayılan seçim
-  bool isSubmitting = false; // Gönderme işlemi kontrolü
+  bool isSubmitting = false; // Gönderim işlemi kontrolü
 
   Future<void> submitForm() async {
     if (isSubmitting) {
@@ -29,7 +30,9 @@ class _FormEmployerPageState extends State<FormEmployerPage> {
       'type': 'İşveren',
       'loadType': loadTypeController.text.trim(),
       'materialType': selectedMaterialType,
-      'destination': destinationController.text.trim(),
+      'destination': destinationLocation != null
+          ? '${destinationLocation!.latitude}, ${destinationLocation!.longitude}'
+          : 'Konum Belirtilmedi',
       'timestamp': FieldValue.serverTimestamp(),
     };
 
@@ -72,6 +75,20 @@ class _FormEmployerPageState extends State<FormEmployerPage> {
     }
   }
 
+  Future<void> _pickLocation() async {
+    await showDialog(
+      context: context,
+      builder: (context) => MapPicker(
+        onLocationSelected: (LatLng location) {
+          setState(() {
+            destinationLocation = location;
+          });
+        },
+        initialLocation: destinationLocation,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,19 +107,24 @@ class _FormEmployerPageState extends State<FormEmployerPage> {
             const SizedBox(height: 20),
             _buildDropdownField('Madde Türü', ['Katı', 'Sıvı']),
             const SizedBox(height: 20),
-            _buildInputField('Gideceği Yer', destinationController),
+            ElevatedButton(
+              onPressed: _pickLocation,
+              child: Text(
+                destinationLocation != null
+                    ? 'Seçilen Konum: ${destinationLocation!.latitude}, ${destinationLocation!.longitude}'
+                    : 'Konum Seç',
+              ),
+            ),
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: submitForm,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue[400],
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 14),
+                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ),
                 elevation: 4,
-                shadowColor: Colors.grey[300],
               ),
               child: const Text(
                 'Gönder',

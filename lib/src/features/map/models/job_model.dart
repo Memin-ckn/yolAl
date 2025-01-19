@@ -11,6 +11,7 @@ class JobModel {
   final String materialType;
   final double latitude;
   final double longitude;
+  final String type; // Yeni alan
 
   JobModel({
     required this.id,
@@ -25,6 +26,7 @@ class JobModel {
     this.materialType = '',
     this.latitude = 0.0,
     this.longitude = 0.0,
+    this.type = '', // Varsayılan değer
   });
 
   factory JobModel.fromJson(Map<String, dynamic> json) {
@@ -41,6 +43,7 @@ class JobModel {
       materialType: json['materialType'] ?? '',
       latitude: (json['latitude'] ?? 0.0).toDouble(),
       longitude: (json['longitude'] ?? 0.0).toDouble(),
+      type: json['type'] ?? '',
     );
   }
 
@@ -58,6 +61,7 @@ class JobModel {
       'materialType': materialType,
       'latitude': latitude,
       'longitude': longitude,
+      'type': type,
     };
   }
 }

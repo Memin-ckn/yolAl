@@ -37,7 +37,7 @@ class App extends StatelessWidget {
         GetPage(name: '/forgot_password', page: () => ForgotPasswordScreen()),
         GetPage(name: '/register', page: () => RegisterScreen()),
         GetPage(name: '/login', page: () => LoginScreen()),
-        GetPage(name: '/heatmap', page: () => HeatMapPage()), // Harita sayfası
+        GetPage(name: '/heatmap', page: () => HeatmapPage()), // Harita sayfası
         GetPage(name: '/category_selection', page: () => CategorySelectionPage()),
         GetPage(name: '/carrier_form', page: () => FormCarrierPage()), // Taşıyıcı formu
         GetPage(name: '/employer_form', page: () => FormEmployerPage()), // İş veren formu
