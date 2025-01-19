@@ -12,29 +12,26 @@ class CategorySelectionPage extends StatefulWidget {
 }
 
 class CategorySelectionPageState extends State<CategorySelectionPage> {
-  int _selectedIndex = 0;
+  final int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    
-    // Handle navigation based on bottom nav bar selection
-    switch (index) {
-      case 1:
-        Get.toNamed('/marketplace');
-        break;
-      case 2:
-        Get.toNamed('/heatmap');
-        break;
-      case 3:
-        Get.toNamed('/profile');
-        break;
-      case 4:
-        Get.toNamed('/settings');
-        break;
-    }
+  if (index == _selectedIndex) return;
+  
+  switch (index) {
+    case 1:
+      Get.toNamed('/marketplace');
+      break;
+    case 2:
+      Get.toNamed('/heatmap');
+      break;
+    case 3:
+      Get.toNamed('/profile');
+      break;
+    case 4:
+      Get.toNamed('/settings');
+      break;
   }
+}
 
   @override
   Widget build(BuildContext context) {

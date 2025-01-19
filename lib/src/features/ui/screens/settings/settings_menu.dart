@@ -6,6 +6,7 @@ import 'widgets/güvenlik.dart';
 import 'widgets/diltercihi.dart';
 import 'widgets/hesapbilgiler.dart';
 import '../../../../common_widgets/bottom_nav_bar.dart';
+import 'package:yol_al/src/features/authentication/controllers/auth_controller.dart';
 
 class AyarlarPage extends StatefulWidget {
   const AyarlarPage({super.key});
@@ -15,23 +16,27 @@ class AyarlarPage extends StatefulWidget {
 }
 
 class _AyarlarPageState extends State<AyarlarPage> {
-  int _selectedIndex = 4; // Set to 4 since this is the settings tab
+  final int _selectedIndex = 4; // Set to 4 since this is the settings tab
+  final AuthController _authController = AuthController();
 
   void _onItemTapped(int index) {
-    if (index == _selectedIndex) return;
-    
-    switch (index) {
-      case 0:
-        Get.offAll(() => CategorySelectionPage());
-        break;
-      case 2:
-        Get.toNamed('/heatmap');
-        break;
-      case 3:
-        Get.toNamed('/profile');
-        break;
-    }
+  if (index == _selectedIndex) return;
+  
+  switch (index) {
+    case 0:
+      Get.offAll(() => CategorySelectionPage());
+      break;
+    case 1:
+      Get.toNamed('/marketplace');
+      break;
+    case 2:
+      Get.toNamed('/heatmap');
+      break;
+    case 3:
+      Get.toNamed('/profile');
+      break;
   }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +86,7 @@ class _AyarlarPageState extends State<AyarlarPage> {
             leading: Icon(Icons.exit_to_app),
             title: Text('Çıkış Yap'),
             onTap: () {
-              // Çıkış yapma işlemi eklenebilir
+              _authController.signOut();
             },
           ),
         ],

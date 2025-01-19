@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
+import 'package:yol_al/src/common_widgets/bottom_nav_bar.dart';
+import 'package:yol_al/src/features/ui/screens/job_post/category_selection_page.dart';
 
 class MarketplacePage extends StatefulWidget {
   const MarketplacePage({super.key});
@@ -12,6 +15,26 @@ class _MarketplacePageState extends State<MarketplacePage> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   String selectedFilter = 'Tümü'; // Filtreleme için seçili tür
   String searchQuery = ''; // Arama sorgusu
+  final int _selectedIndex = 1; // Marketplace Index
+
+  void _onItemTapped(int index) {
+    if (index == _selectedIndex) return;
+
+    switch (index) {
+      case 0:
+        Get.offAll(() => CategorySelectionPage());
+        break;
+      case 2:
+        Get.toNamed('/heatmap');
+        break;
+      case 3:
+        Get.toNamed('/profile');
+        break;
+      case 4:
+        Get.toNamed('/settings');
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,6 +136,10 @@ class _MarketplacePageState extends State<MarketplacePage> {
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: CustomBottomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }

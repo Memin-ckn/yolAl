@@ -14,23 +14,26 @@ class HesabimPage extends StatefulWidget {
 
 class HesabimPageState extends State<HesabimPage> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  int _selectedIndex = 3; // Profile tab index
+  final int _selectedIndex = 3; // Profile tab index
 
   void _onItemTapped(int index) {
-    if (index == _selectedIndex) return;
-
-    switch (index) {
-      case 0:
-        Get.offAll(() => CategorySelectionPage());
-        break;
-      case 2:
-        Get.toNamed('/heatmap');
-        break;
-      case 4:
-        Get.toNamed('/settings');
-        break;
-    }
+  if (index == _selectedIndex) return;
+  
+  switch (index) {
+    case 0:
+      Get.offAll(() => CategorySelectionPage());
+      break;
+    case 1:
+      Get.toNamed('/marketplace');
+      break;
+    case 2:
+      Get.toNamed('/heatmap');
+      break;
+    case 4:
+      Get.toNamed('/settings');
+      break;
   }
+}
 
   Future<void> _deleteListing(String docId) async {
     try {

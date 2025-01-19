@@ -17,26 +17,26 @@ class CustomBottomNavBar extends StatelessWidget {
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.add_business),
-          label: '',
+          label: 'İlan Ver',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.search),
-          label: '',
+          label: 'Keşfet',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.location_on_outlined),
-          label: '',
+          label: 'Harita',
         ),
         BottomNavigationBarItem(
           icon: CircleAvatar(
             radius: 14,
             backgroundImage: AssetImage('assets/images/profile.png'),
           ),
-          label: '',
+          label: 'Profil',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),
-          label: '',
+          label: 'Ayarlar',
         ),
       ],
       currentIndex: selectedIndex,
