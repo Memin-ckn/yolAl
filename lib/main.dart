@@ -7,9 +7,11 @@ import 'package:yol_al/src/features/authentication/screens/forgetPassword/forgot
 import 'package:yol_al/src/features/authentication/screens/signup/register_screen.dart';
 import 'package:yol_al/src/features/authentication/screens/login/login_page.dart';
 import 'package:yol_al/src/features/map/screens/heatmap_page.dart';
-import 'package:yol_al/src/features/map/screens/category_selection_page.dart';
-import 'package:yol_al/src/features/map/screens/form_carrier_page.dart';
-import 'package:yol_al/src/features/map/screens/form_employer_page.dart';
+import 'package:yol_al/src/features/ui/screens/job_post/category_selection_page.dart';
+import 'package:yol_al/src/features/ui/screens/job_post/form_carrier_page.dart';
+import 'package:yol_al/src/features/ui/screens/job_post/form_employer_page.dart';
+import 'package:yol_al/src/features/ui/screens/job_post/marketplace_page.dart';
+import 'package:yol_al/src/features/ui/screens/profile/favorites_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -40,6 +42,11 @@ class App extends StatelessWidget {
         ), // Kategori seçimi
         GetPage(name: '/carrier_form', page: () => FormCarrierPage()), // Taşıyıcı formu
         GetPage(name: '/employer_form', page: () => FormEmployerPage()), // İş veren formu
+        GetPage(name: '/profile', page: () => HesabimPage()),
+        GetPage(name: '/settings', page: () => AyarlarPage()),
+        GetPage(name: '/marketplace', page:() => MarketplacePage()),
+        GetPage(name: '/favorites', page: () => const FavoritesPage()),
+
       ],
     );
   }
