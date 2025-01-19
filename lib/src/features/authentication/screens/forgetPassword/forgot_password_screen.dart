@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,6 +7,11 @@ class ForgotPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const String widgetCheck = 'lib/src/constants/8824277205042_1604305514716.webp';
+    assert(
+      File(widgetCheck).existsSync(),
+      'Something is missing..',
+    );
     return Scaffold(
       backgroundColor: const Color(0xFFFAFAFA), // @color/background
       body: SingleChildScrollView(
