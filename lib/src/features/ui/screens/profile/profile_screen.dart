@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:yol_al/src/features/ui/screens/job_post/category_selection_page.dart';
-import 'widgets/gecmis_isler.dart';
 import '../../../../common_widgets/bottom_nav_bar.dart';
+import '../profile/edit_listing_page.dart';
 
 class HesabimPage extends StatefulWidget {
   const HesabimPage({super.key});
@@ -12,12 +13,12 @@ class HesabimPage extends StatefulWidget {
 }
 
 class HesabimPageState extends State<HesabimPage> {
-  final gecmisIsler = GecmisIslerPage().isler;
-  int _selectedIndex = 3; // Set to 3 since this is the profile tab
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  int _selectedIndex = 3; // Profile tab index
 
   void _onItemTapped(int index) {
     if (index == _selectedIndex) return;
-    
+
     switch (index) {
       case 0:
         Get.offAll(() => CategorySelectionPage());
@@ -31,39 +32,59 @@ class HesabimPageState extends State<HesabimPage> {
     }
   }
 
+  Future<void> _deleteListing(String docId) async {
+    try {
+      await firestore.collection('jobListings').doc(docId).delete();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('İlan başarıyla silindi.')),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Hata: $e')),
+      );
+    }
+  }
+
+  void _editListing(String docId, Map<String, dynamic> currentData) {
+    // Düzenleme sayfasına yönlendirme
+    Get.to(() => EditListingPage(docId: docId, currentData: currentData));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hesabım"),
+        title: const Text("Hesabım"),
         backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
       ),
       body: ListView(
         children: [
+          // Kullanıcı Profili Bölümü
           Container(
             color: Colors.blueGrey,
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Row(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 40,
                   backgroundImage: AssetImage('assets/images/profile.png'),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Kullanıcı Adı",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       "example@gmail.com",
                       style: TextStyle(fontSize: 16, color: Colors.grey[700]),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       "Telefon Numarası:",
                       style: TextStyle(fontSize: 16, color: Colors.grey[700]),
@@ -73,19 +94,12 @@ class HesabimPageState extends State<HesabimPage> {
               ],
             ),
           ),
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.add_task),
-            title: Text("Geçmiş İşler"),
-            trailing: Icon(Icons.arrow_forward_ios),
-            onTap: () {
-              Get.to(() => GecmisIslerPage());
-            },
-          ),
+          const Divider(),
+          // İlanlarım ve Favoriler Bölümü
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              "Son İşleriniz",
+              "İlanlarım",
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -93,40 +107,99 @@ class HesabimPageState extends State<HesabimPage> {
               ),
             ),
           ),
-          // Son 3 iş kartı
-          ...gecmisIsler
-              .take(3)
-              .map((is_) => Card(
-                    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: ListTile(
-                      leading: Icon(Icons.work,
-                          color: is_.durum == "Tamamlandı"
-                              ? Colors.blue
-                              : Colors.red),
-                      title: Text(is_.baslik),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Tarih: ${is_.tarih}"),
-                          Text(
-                            "Durum: ${is_.durum}",
-                            style: TextStyle(
-                              color: is_.durum == "Tamamlandı"
-                                  ? Colors.green
-                                  : Colors.red,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ))
-              ,
+          _buildMyListings(),
+          const Divider(),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              "Favorilerim",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[800],
+              ),
+            ),
+          ),
+          _buildFavorites(),
         ],
       ),
       bottomNavigationBar: CustomBottomNavBar(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,
       ),
+    );
+  }
+
+  Widget _buildMyListings() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: firestore.collection('jobListings').snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+          return const Center(child: Text('Henüz bir ilanınız yok.'));
+        }
+
+        final myListings = snapshot.data!.docs;
+
+        return Column(
+          children: myListings.map((doc) {
+            final data = doc.data() as Map<String, dynamic>;
+            return Card(
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: ListTile(
+                title: Text(data['type'] ?? 'İlan'),
+                subtitle: Text(data['loadType'] ?? data['vehicleType'] ?? 'Detay yok'),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.edit, color: Colors.blue),
+                      onPressed: () => _editListing(doc.id, data),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.delete, color: Colors.red),
+                      onPressed: () => _deleteListing(doc.id),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }).toList(),
+        );
+      },
+    );
+  }
+
+  Widget _buildFavorites() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: firestore.collection('favorites').snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+          return const Center(child: Text('Henüz favorilere eklenmiş ilan yok.'));
+        }
+
+        final favorites = snapshot.data!.docs;
+
+        return Column(
+          children: favorites.map((doc) {
+            final data = doc.data() as Map<String, dynamic>;
+            return Card(
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: ListTile(
+                title: Text(data['type'] ?? 'İlan'),
+                subtitle: Text(data['loadType'] ?? data['vehicleType'] ?? 'Detay yok'),
+              ),
+            );
+          }).toList(),
+        );
+      },
     );
   }
 }

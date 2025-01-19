@@ -12,6 +12,8 @@ import 'package:yol_al/src/features/map/screens/heatmap_page.dart';
 import 'package:yol_al/src/features/ui/screens/job_post/category_selection_page.dart';
 import 'package:yol_al/src/features/ui/screens/job_post/form_carrier_page.dart';
 import 'package:yol_al/src/features/ui/screens/job_post/form_employer_page.dart';
+import 'package:yol_al/src/features/ui/screens/job_post/marketplace_page.dart';
+import 'package:yol_al/src/features/ui/screens/profile/favorites_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -41,6 +43,9 @@ class App extends StatelessWidget {
         GetPage(name: '/employer_form', page: () => FormEmployerPage()), // İş veren formu
         GetPage(name: '/profile', page: () => HesabimPage()),
         GetPage(name: '/settings', page: () => AyarlarPage()),
+        GetPage(name: '/marketplace', page:() => MarketplacePage()),
+        GetPage(name: '/favorites', page: () => const FavoritesPage()),
+
       ],
     );
   }

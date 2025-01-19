@@ -21,6 +21,9 @@ class CategorySelectionPageState extends State<CategorySelectionPage> {
     
     // Handle navigation based on bottom nav bar selection
     switch (index) {
+      case 1:
+        Get.toNamed('/marketplace');
+        break;
       case 2:
         Get.toNamed('/heatmap');
         break;
